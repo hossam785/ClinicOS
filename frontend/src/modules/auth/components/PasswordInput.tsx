@@ -1,6 +1,7 @@
 import type { InputHTMLAttributes } from 'react'
 import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
+import { useLanguage } from '@/i18n'
 
 export interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string
@@ -14,9 +15,11 @@ export default function PasswordInput({
   error,
   helperText,
   requiredIndicator,
+  style: userStyle,
   ...props
 }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false)
+  const { isRTL } = useLanguage()
 
   const toggleVisibility = () => {
     setShowPassword((prev) => !prev)
@@ -33,7 +36,11 @@ export default function PasswordInput({
       <div style={{ position: 'relative', width: '100%' }}>
         <input
           type={showPassword ? 'text' : 'password'}
-          style={{ paddingRight: '2.5rem' }}
+          style={{
+            paddingLeft: isRTL ? '2.5rem' : '1rem',
+            paddingRight: isRTL ? '1rem' : '2.5rem',
+            ...userStyle,
+          }}
           {...props}
         />
         <button
@@ -41,9 +48,10 @@ export default function PasswordInput({
           onClick={toggleVisibility}
           style={{
             position: 'absolute',
-            right: '10px',
             top: '50%',
             transform: 'translateY(-50%)',
+            left: isRTL ? '10px' : 'auto',
+            right: isRTL ? 'auto' : '10px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
@@ -52,6 +60,7 @@ export default function PasswordInput({
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
+            zIndex: 2,
           }}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
         >

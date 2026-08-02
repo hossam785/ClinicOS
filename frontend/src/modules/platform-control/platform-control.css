@@ -1,265 +1,169 @@
-/* Platform Control Panel Base Layout & Reset */
+/* Platform Control Panel - Ultra-Premium Dark Enterprise Theme */
+
 .platform-control-root {
   min-height: 100vh;
-  background-color: #020617;
-  color: #f8fafc;
-  padding: 1.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  box-sizing: border-box;
+  background-color: #030712 !important;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(17, 24, 39, 0.3) 0px, transparent 50%);
+  color: #f3f4f6 !important;
+  padding: 1.75rem !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  box-sizing: border-box !important;
 }
 
-/* Header & Typography */
-.platform-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #1e293b;
+/* Force LTR layout for admin panel */
+.platform-control-root,
+.platform-control-root[dir="rtl"],
+.platform-control-root[dir="ltr"] {
+  direction: ltr !important;
+  text-align: left !important;
 }
 
-@media (min-width: 768px) {
-  .platform-header {
-    flex-direction: row;
-    align-items: center;
-  }
+.platform-control-root * {
+  box-sizing: border-box !important;
 }
 
-.platform-title-group {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+/* Glassmorphism Cards */
+.platform-control-root .bg-slate-900,
+.platform-control-root .bg-slate-950 {
+  background-color: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
 }
 
-.platform-icon-badge {
-  padding: 0.5rem;
-  background-color: rgba(37, 99, 235, 0.2);
-  color: #60a5fa;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.platform-control-root .border-slate-800 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.platform-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  color: #ffffff;
-  margin: 0;
+/* Navigation Tabs Styling Fix */
+.platform-control-root button {
+  font-family: inherit !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.platform-subtitle {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  margin-top: 0.125rem;
-  margin-bottom: 0;
+/* Un-selected / Inactive Tab Buttons */
+.platform-control-root .text-slate-400.hover\:bg-slate-900,
+.platform-control-root button:not(.bg-blue-600) {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  color: #9ca3af !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Metric Cards Grid */
-.platform-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.platform-control-root button:not(.bg-blue-600):hover {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-.platform-metric-card {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+/* Active Selected Tab */
+.platform-control-root .bg-blue-600,
+.platform-control-root button.bg-blue-600 {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(96, 165, 250, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
 }
 
-.platform-metric-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #94a3b8;
+/* Metric Cards Enhancements */
+.platform-control-root .grid-cols-6 > div,
+.platform-control-root .grid > div {
+  border-radius: 0.875rem !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
 }
 
-.platform-metric-value {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #ffffff;
+.platform-control-root .grid-cols-6 > div:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Navigation Tabs */
-.platform-tabs-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #1e293b;
+/* Text Colors */
+.platform-control-root .text-white { color: #ffffff !important; }
+.platform-control-root .text-slate-100 { color: #f3f4f6 !important; }
+.platform-control-root .text-slate-200 { color: #e5e7eb !important; }
+.platform-control-root .text-slate-300 { color: #d1d5db !important; }
+.platform-control-root .text-slate-400 { color: #9ca3af !important; }
+.platform-control-root .text-slate-500 { color: #6b7280 !important; }
+
+.platform-control-root .text-blue-400 { color: #60a5fa !important; }
+.platform-control-root .text-emerald-400 { color: #34d399 !important; }
+.platform-control-root .text-amber-400 { color: #fbbf24 !important; }
+.platform-control-root .text-rose-400 { color: #f87171 !important; }
+.platform-control-root .text-purple-400 { color: #c084fc !important; }
+.platform-control-root .text-teal-400 { color: #2dd4bf !important; }
+
+/* Input Fields & Select Dropdowns */
+.platform-control-root input,
+.platform-control-root select {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 0.875rem !important;
+  font-size: 0.8125rem !important;
+  outline: none !important;
 }
 
-.platform-tab-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  border-radius: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  color: #94a3b8;
-  transition: all 150ms ease;
+.platform-control-root input:focus,
+.platform-control-root select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
 }
 
-.platform-tab-btn:hover {
-  color: #e2e8f0;
-  background-color: #0f172a;
+/* Tables Styling */
+.platform-control-root table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  text-align: left !important;
 }
 
-.platform-tab-btn.active {
-  background-color: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+.platform-control-root th {
+  background-color: rgba(3, 7, 18, 0.7) !important;
+  color: #9ca3af !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 0.875rem 1.25rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Tables & Data Displays */
-.platform-table-container {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
-  border-radius: 1rem;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
+.platform-control-root td {
+  padding: 1rem 1.25rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: #e5e7eb !important;
+  font-size: 0.8125rem !important;
 }
 
-.platform-table-header {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid #1e293b;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.platform-control-root tr:hover td {
+  background-color: rgba(30, 41, 59, 0.4) !important;
 }
 
-.platform-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: start;
-  font-size: 0.8125rem;
+/* Action Buttons inside Table */
+.platform-control-root td button {
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  margin-right: 0.375rem !important;
 }
 
-.platform-table th {
-  padding: 0.75rem 1.25rem;
-  background-color: #020617;
-  color: #64748b;
-  font-weight: 700;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid #1e293b;
+/* Scrollbar Customization */
+.platform-control-root ::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
 }
-
-.platform-table td {
-  padding: 0.875rem 1.25rem;
-  border-bottom: 1px solid #1e293b;
-  color: #cbd5e1;
+.platform-control-root ::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
 }
-
-.platform-table tr:hover td {
-  background-color: rgba(30, 41, 59, 0.5);
-}
-
-/* Badges */
-.platform-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.625rem;
+.platform-control-root ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
-  font-size: 0.7rem;
-  font-weight: 700;
 }
-
-.platform-badge-success {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+.platform-control-root ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
-
-.platform-badge-danger {
-  background-color: rgba(244, 63, 94, 0.15);
-  color: #fb7185;
-  border: 1px solid rgba(244, 63, 94, 0.3);
-}
-
-.platform-badge-warning {
-  background-color: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-/* Utility Fallback Classes for Tailwind */
-.min-h-screen { min-height: 100vh; }
-.bg-slate-950 { background-color: #020617 !important; }
-.bg-slate-900 { background-color: #0f172a !important; }
-.bg-slate-800 { background-color: #1e293b !important; }
-.bg-blue-600 { background-color: #2563eb !important; }
-.text-slate-100 { color: #f8fafc !important; }
-.text-slate-200 { color: #e2e8f0 !important; }
-.text-slate-300 { color: #cbd5e1 !important; }
-.text-slate-400 { color: #94a3b8 !important; }
-.text-slate-500 { color: #64748b !important; }
-.text-white { color: #ffffff !important; }
-.text-blue-400 { color: #60a5fa !important; }
-.text-emerald-400 { color: #34d399 !important; }
-.text-rose-400 { color: #fb7185 !important; }
-.text-amber-400 { color: #fbbf24 !important; }
-
-.flex { display: flex !important; }
-.flex-col { flex-direction: column !important; }
-.items-center { align-items: center !important; }
-.justify-between { justify-content: space-between !important; }
-.justify-center { justify-content: center !important; }
-.gap-1 { gap: 0.25rem !important; }
-.gap-2 { gap: 0.5rem !important; }
-.gap-3 { gap: 0.75rem !important; }
-.gap-4 { gap: 1rem !important; }
-.gap-6 { gap: 1.5rem !important; }
-
-.grid { display: grid !important; }
-.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
-.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-
-@media (min-width: 768px) {
-  .md\:flex-row { flex-direction: row !important; }
-  .md\:items-center { align-items: center !important; }
-  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-}
-
-@media (min-width: 1280px) {
-  .xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
-}
-
-.p-2 { padding: 0.5rem !important; }
-.p-4 { padding: 1rem !important; }
-.p-6 { padding: 1.5rem !important; }
-.px-3 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
-.px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
-.py-1\.5 { padding-top: 0.375rem !important; padding-bottom: 0.375rem !important; }
-.py-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
-.py-2\.5 { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
-
-.mb-6 { margin-bottom: 1.5rem !important; }
-.pb-6 { padding-bottom: 1.5rem !important; }
-.border-b { border-bottom-width: 1px !important; }
-.border-slate-800 { border-color: #1e293b !important; }
-.rounded-xl { border-radius: 0.75rem !important; }
-.rounded-2xl { border-radius: 1rem !important; }
-.rounded-lg { border-radius: 0.5rem !important; }
-
-.w-full { width: 100% !important; }
-.overflow-x-auto { overflow-x: auto !important; }
-.whitespace-nowrap { white-space: nowrap !important; }

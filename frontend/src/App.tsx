@@ -26,7 +26,39 @@ import { AuthProvider } from '@/modules/auth/context/AuthProvider'
 import { LocalizationProvider } from '@/i18n'
 import { useAuth } from '@/modules/auth/hooks/useAuth'
 
+import PlatformControlWorkspaceView from '@/modules/platform-control/views/PlatformControlWorkspaceView'
+
 function RootGuard() {
+  const { user, isAuthenticated, isInitialized } = useAuth()
+
+  if (!isInitialized) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+        <Loader size="large" />
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/auth/login" replace />
+  }
+
+  if (user?.role === 'PlatformSuperAdmin') {
+    return <Navigate to="/platform-control" replace />
+  }
+
+  return <Navigate to="/dashboard" replace />
+}
+
+function DashboardIndexGuard() {
+  const { user } = useAuth()
+  if (user?.role === 'PlatformSuperAdmin') {
+    return <Navigate to="/platform-control" replace />
+  }
+  return <Navigate to="/dashboard/patients" replace />
+}
+
+function PlatformGuard() {
   const { isAuthenticated, isInitialized } = useAuth()
 
   if (!isInitialized) {
@@ -37,11 +69,27 @@ function RootGuard() {
     )
   }
 
-  return <Navigate to={isAuthenticated ? '/dashboard' : '/auth/login'} replace />
+  if (!isAuthenticated) {
+    return <Navigate to="/auth/login" replace />
+  }
+
+  return (
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center' }}><Loader size="medium" /></div>}>
+      <PlatformControlWorkspaceView />
+    </Suspense>
+  )
 }
 
 const router = createBrowserRouter([
   ...bookingPortalPublicRoutes,
+  {
+    path: '/platform-control',
+    element: <PlatformGuard />,
+  },
+  {
+    path: '/platform',
+    element: <Navigate to="/platform-control" replace />,
+  },
   {
     path: '/',
     element: <PublicLayout />,
@@ -73,7 +121,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/dashboard/patients" replace />,
+        element: <DashboardIndexGuard />,
       },
       {
         path: '',

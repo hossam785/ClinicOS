@@ -4,7 +4,7 @@ import { useLanguage } from '@/i18n'
 import Loader from '@/design-system/components/Loader'
 
 export default function AuthLayout() {
-  const { isAuthenticated, isInitialized } = useAuth()
+  const { user, isAuthenticated, isInitialized } = useAuth()
   const { direction } = useLanguage()
 
   if (!isInitialized) {
@@ -16,6 +16,9 @@ export default function AuthLayout() {
   }
 
   if (isAuthenticated) {
+    if (user?.role === 'PlatformSuperAdmin') {
+      return <Navigate to="/platform-control" replace />
+    }
     return <Navigate to="/dashboard" replace />
   }
 

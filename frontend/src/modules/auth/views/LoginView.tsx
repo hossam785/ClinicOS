@@ -7,10 +7,41 @@ import PasswordInput from '../components/PasswordInput'
 import Input from '@/design-system/components/Input'
 import Button from '@/design-system/components/Button'
 import Alert from '@/design-system/components/Alert'
-import { LanguageSwitcher } from '@/i18n'
+import { LanguageSwitcher, useLanguage } from '@/i18n'
+
+const content = {
+  ar: {
+    title: 'تسجيل الدخول إلى ClinicOS',
+    subtitle: 'الوصول إلى لوحة التحكم بمساحة العمل',
+    emailLabel: 'البريد الإلكتروني',
+    passwordLabel: 'كلمة المرور',
+    signIn: 'تسجيل الدخول',
+    signingIn: 'جاري تسجيل الدخول...',
+    forgotPassword: 'نسيت كلمة المرور؟',
+    registerStaff: 'تسجيل عضو فريق جديد',
+    checkStatus: 'متابعة حالة الطلب',
+    accessDenied: 'تم رفض الوصول',
+    success: 'تم بنجاح',
+  },
+  en: {
+    title: 'Sign in to ClinicOS',
+    subtitle: 'Access your workspace dashboard',
+    emailLabel: 'Email Address',
+    passwordLabel: 'Password',
+    signIn: 'Sign In',
+    signingIn: 'Sign In...',
+    forgotPassword: 'Forgot Password?',
+    registerStaff: 'Register New Staff Member',
+    checkStatus: 'Check Review Status',
+    accessDenied: 'Access Denied',
+    success: 'Success',
+  },
+}
 
 export default function LoginView() {
   const { login } = useAuth()
+  const { language } = useLanguage()
+  const t = content[language === 'ar' ? 'ar' : 'en']
 
   const {
     values,
@@ -37,19 +68,19 @@ export default function LoginView() {
 
   return (
     <AuthCard>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.75rem' }}>
         <LanguageSwitcher />
       </div>
 
-      <AuthHeader title="Sign in to ClinicOS" subtitle="Access your workspace dashboard" />
+      <AuthHeader title={t.title} subtitle={t.subtitle} />
 
       {errorMsg && (
-        <Alert variant="danger" title="Access Denied" style={{ marginBottom: '1.5rem' }}>
+        <Alert variant="danger" title={t.accessDenied} style={{ marginBottom: '1.5rem' }}>
           {errorMsg}
         </Alert>
       )}
       {successMsg && (
-        <Alert variant="success" title="Success" style={{ marginBottom: '1.5rem' }}>
+        <Alert variant="success" title={t.success} style={{ marginBottom: '1.5rem' }}>
           {successMsg}
         </Alert>
       )}
@@ -59,7 +90,7 @@ export default function LoginView() {
           <Input
             name="email"
             type="email"
-            label="Email Address"
+            label={t.emailLabel}
             value={values.email}
             error={errors.email}
             onChange={handleChange}
@@ -74,7 +105,7 @@ export default function LoginView() {
         <div style={{ marginBottom: '1rem' }}>
           <PasswordInput
             name="password"
-            label="Password"
+            label={t.passwordLabel}
             value={values.password}
             error={errors.password}
             onChange={handleChange}
@@ -91,15 +122,15 @@ export default function LoginView() {
           disabled={loading}
           style={{ width: '100%', marginTop: '1.5rem', padding: '0.75rem' }}
         >
-          {loading ? 'Sign In...' : 'Sign In'}
+          {loading ? t.signingIn : t.signIn}
         </Button>
       </form>
 
       <AuthFooter
         links={[
-          { label: 'Forgot Password?', to: '/auth/forgot-password' },
-          { label: 'Register New Staff Member', to: '/auth/onboard' },
-          { label: 'Check Review Status', to: '/auth/pending-approval' },
+          { label: t.forgotPassword, to: '/auth/forgot-password' },
+          { label: t.registerStaff, to: '/auth/onboard' },
+          { label: t.checkStatus, to: '/auth/pending-approval' },
         ]}
       />
     </AuthCard>

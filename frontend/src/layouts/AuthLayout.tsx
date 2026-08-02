@@ -1,9 +1,11 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { useAuth } from '@/modules/auth/hooks/useAuth'
+import { useLanguage } from '@/i18n'
 import Loader from '@/design-system/components/Loader'
 
 export default function AuthLayout() {
   const { isAuthenticated, isInitialized } = useAuth()
+  const { direction } = useLanguage()
 
   if (!isInitialized) {
     return (
@@ -20,7 +22,7 @@ export default function AuthLayout() {
   return (
     <div
       className="auth-layout"
-      dir="ltr"
+      dir={direction}
       style={{
         display: 'flex',
         alignItems: 'center',

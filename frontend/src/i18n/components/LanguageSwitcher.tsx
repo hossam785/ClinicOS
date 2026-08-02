@@ -40,22 +40,67 @@ export const LanguageSwitcher: React.FC<{ className?: string }> = ({ className =
   };
 
   return (
-    <div className={`relative inline-block text-left ${className}`} ref={dropdownRef}>
+    <div style={{ position: 'relative', display: 'inline-block' }} ref={dropdownRef} className={className}>
       <button
         type="button"
         onClick={() => setIsOpen(prev => !prev)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 hover:bg-slate-800/80 transition-colors text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '6px 14px',
+          borderRadius: '10px',
+          backgroundColor: '#1e293b',
+          border: '1px solid #334155',
+          color: '#f8fafc',
+          cursor: 'pointer',
+          fontSize: '0.8125rem',
+          fontWeight: 600,
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+        }}
         aria-label="Select Application Language"
         aria-expanded={isOpen}
       >
-        <Globe className="w-4 h-4 text-blue-400" />
+        <Globe size={16} color="#3b82f6" />
         <span>{currentLangInfo.nativeName}</span>
-        <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown
+          size={14}
+          color="#94a3b8"
+          style={{
+            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 200ms ease',
+          }}
+        />
       </button>
 
       {isOpen && (
-        <div className="absolute end-0 mt-2 w-44 rounded-xl bg-slate-900 border border-slate-800 shadow-2xl z-50 py-1 overflow-hidden backdrop-blur-md">
-          <div className="px-3 py-1.5 border-b border-slate-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            right: 0,
+            marginTop: '6px',
+            width: '170px',
+            borderRadius: '12px',
+            backgroundColor: '#1e293b',
+            border: '1px solid #334155',
+            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+            zIndex: 9999,
+            overflow: 'hidden',
+            padding: '4px 0',
+          }}
+        >
+          <div
+            style={{
+              padding: '6px 12px',
+              borderBottom: '1px solid #334155',
+              fontSize: '10px',
+              fontWeight: 700,
+              color: '#94a3b8',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+            }}
+          >
             Select Language / اختر اللغة
           </div>
           {(Object.keys(SUPPORTED_LANGUAGES) as LanguageCode[]).map(code => {
@@ -66,17 +111,26 @@ export const LanguageSwitcher: React.FC<{ className?: string }> = ({ className =
                 key={code}
                 type="button"
                 onClick={() => handleSelect(code)}
-                className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors text-start ${
-                  isActive
-                    ? 'bg-blue-600/15 text-blue-400 font-bold'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                }`}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '8px 12px',
+                  fontSize: '0.8125rem',
+                  color: isActive ? '#60a5fa' : '#cbd5e1',
+                  backgroundColor: isActive ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textAlign: 'start',
+                  fontWeight: isActive ? 700 : 400,
+                }}
               >
-                <div className="flex items-center gap-2">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span>{info.nativeName}</span>
-                  <span className="text-[10px] text-slate-500">({info.name})</span>
+                  <span style={{ fontSize: '10px', color: '#64748b' }}>({info.name})</span>
                 </div>
-                {isActive && <Check className="w-3.5 h-3.5 text-blue-400" />}
+                {isActive && <Check size={14} color="#60a5fa" />}
               </button>
             );
           })}

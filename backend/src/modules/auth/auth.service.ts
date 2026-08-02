@@ -119,8 +119,8 @@ export class AuthService {
     email: string
     passwordPlain: string
   }): Promise<{ token: string; user: Omit<User, 'passwordHash'> }> {
-    const user = await UserRepository.findByEmail(payload.email)
-    if (!user || user.tenantId !== payload.tenantId) {
+    const user = await UserRepository.findByEmail(payload.email.toLowerCase())
+    if (!user || (payload.tenantId && user.tenantId !== payload.tenantId)) {
       throw new AppError('Invalid email or password.', 401, 'INVALID_CREDENTIALS')
     }
 

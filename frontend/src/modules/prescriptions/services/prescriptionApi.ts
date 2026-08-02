@@ -71,7 +71,7 @@ export const prescriptionApi = {
   exportPrescriptionPdf: async (id: string): Promise<Blob> => {
     const token = localStorage.getItem('clinicos_token')
     const savedTenantId = localStorage.getItem('clinicos_tenant_id')
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/v1'
+    const baseUrl = import.meta.env.VITE_API_URL || '/api/v1'
 
     const headers = new Headers()
     headers.set('Accept', 'application/pdf')

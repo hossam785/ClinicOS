@@ -1,0 +1,14 @@
+{
+  "name": "clinicos-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "lint": "npm --prefix backend run lint"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

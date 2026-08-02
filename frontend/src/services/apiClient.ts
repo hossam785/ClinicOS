@@ -3,7 +3,7 @@
  * Encapsulates tenant scoping, authorization token headers, and standard error parsing.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/v1'
+const BASE_URL = import.meta.env.VITE_API_URL || '/api/v1'
 
 interface RequestOptions extends RequestInit {
   tenantId?: string

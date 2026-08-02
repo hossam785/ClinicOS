@@ -24,6 +24,21 @@ import Loader from '@/design-system/components/Loader'
 
 import { AuthProvider } from '@/modules/auth/context/AuthProvider'
 import { LocalizationProvider } from '@/i18n'
+import { useAuth } from '@/modules/auth/hooks/useAuth'
+
+function RootGuard() {
+  const { isAuthenticated, isInitialized } = useAuth()
+
+  if (!isInitialized) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+        <Loader size="large" />
+      </div>
+    )
+  }
+
+  return <Navigate to={isAuthenticated ? '/dashboard' : '/auth/login'} replace />
+}
 
 const router = createBrowserRouter([
   ...bookingPortalPublicRoutes,
@@ -33,12 +48,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <div style={{ padding: '2rem', textAlign: 'center' }}>
-            <h1>Welcome to ClinicOS</h1>
-            <p>Enterprise Medical Operating System. Workspace is initialized.</p>
-          </div>
-        ),
+        element: <RootGuard />,
       },
     ],
   },

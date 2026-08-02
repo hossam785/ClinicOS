@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const login = async (tId: string, email: string, passwordPlain: string) => {
+  const login = async (email: string, passwordPlain: string, tId?: string) => {
     const response = await apiClient.post<{
       success: boolean
       data: { token: string; user: UserProfile }
@@ -69,10 +69,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (response.success && response.data) {
       const { token: nextToken, user: nextUser } = response.data
+      const activeTenantId = nextUser.tenantId || tId || ''
       localStorage.setItem('clinicos_token', nextToken)
-      localStorage.setItem('clinicos_tenant_id', tId)
+      localStorage.setItem('clinicos_tenant_id', activeTenantId)
       setToken(nextToken)
-      setTenantId(tId)
+      setTenantId(activeTenantId)
       setUser(nextUser)
     }
   }

@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   public static async login(payload: {
-    tenantId: string
+    tenantId?: string
     email: string
     passwordPlain: string
   }): Promise<{ token: string; user: Omit<User, 'passwordHash'> }> {

@@ -14,7 +14,7 @@ export interface AuthContextType {
   token: string | null
   isAuthenticated: boolean
   isInitialized: boolean
-  login: (tenantId: string, email: string, passwordPlain: string) => Promise<void>
+  login: (email: string, passwordPlain: string, tenantId?: string) => Promise<void>
   logout: () => Promise<void>
   registerClinic: (
     clinicName: string,

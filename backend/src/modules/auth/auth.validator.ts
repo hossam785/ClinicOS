@@ -6,11 +6,7 @@ function validateEmail(email: string): boolean {
 
 export const AuthValidator = {
   login(body: Record<string, unknown>) {
-    const { tenantId, email, password } = body
-
-    if (!tenantId || typeof tenantId !== 'string' || !tenantId.trim()) {
-      throw new AppError('Tenant ID is required.', 400, 'VALIDATION_FAILED')
-    }
+    const { email, password } = body
 
     if (!email || typeof email !== 'string' || !email.trim()) {
       throw new AppError('Email address is required.', 400, 'VALIDATION_FAILED')

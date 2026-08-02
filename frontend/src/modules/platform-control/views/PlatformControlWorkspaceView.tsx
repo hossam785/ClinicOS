@@ -27,6 +27,8 @@ import { PlatformAuditCenter } from '../components/PlatformAuditCenter';
 import { PlatformConfigPanel } from '../components/PlatformConfigPanel';
 import { PlatformFeatureFlags } from '../components/PlatformFeatureFlags';
 
+import '../platform-control.css';
+
 export const PlatformControlWorkspaceView: React.FC = () => {
   const {
     activeTab,

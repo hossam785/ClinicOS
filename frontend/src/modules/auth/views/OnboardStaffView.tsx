@@ -1,0 +1,129 @@
+import { useSearchParams } from 'react-router-dom'
+import { useAuthForm } from '../hooks/useAuthForm'
+import { useAuth } from '../hooks/useAuth'
+import AuthCard from '../components/AuthCard'
+import AuthHeader from '../components/AuthHeader'
+import AuthFooter from '../components/AuthFooter'
+import PasswordInput from '../components/PasswordInput'
+import Input from '@/design-system/components/Input'
+import Button from '@/design-system/components/Button'
+import Alert from '@/design-system/components/Alert'
+
+export default function OnboardStaffView() {
+  const { onboardStaff } = useAuth()
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get('token') || ''
+
+  const {
+    values,
+    errors,
+    loading,
+    errorMsg,
+    successMsg,
+    setSuccessMsg,
+    setErrorMsg,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useAuthForm({
+    initialValues: {
+      fullName: '',
+      password: '',
+      confirmPassword: '',
+    },
+    validationRules: {
+      fullName: { required: true },
+      password: { required: true, minLength: 10 },
+      confirmPassword: { required: true, minLength: 10 },
+    },
+    onSubmit: async (formValues) => {
+      if (formValues.password !== formValues.confirmPassword) {
+        setErrorMsg('Passwords do not match. Please verify.')
+        return
+      }
+
+      if (!token) {
+        setErrorMsg('Invitation token is missing from the url parameters.')
+        return
+      }
+
+      await onboardStaff(token, formValues.fullName, formValues.password)
+      setSuccessMsg('Profile activated successfully. You can now log in.')
+    },
+  })
+
+  return (
+    <AuthCard>
+      <AuthHeader title="Activate Account" subtitle="Complete registration for invited staff members" />
+
+      {errorMsg && (
+        <Alert variant="danger" title="Error" style={{ marginBottom: '1.5rem' }}>
+          {errorMsg}
+        </Alert>
+      )}
+      {successMsg && (
+        <Alert variant="success" title="Success" style={{ marginBottom: '1.5rem' }}>
+          {successMsg}
+        </Alert>
+      )}
+
+      {!successMsg && (
+        <form onSubmit={handleSubmit} noValidate>
+          <div style={{ marginBottom: '1rem' }}>
+            <Input
+              name="fullName"
+              label="Full Name"
+              value={values.fullName}
+              error={errors.fullName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={loading}
+              requiredIndicator
+              autoFocus
+              placeholder="e.g. Dr. John Doe"
+            />
+          </div>
+
+          <div style={{ marginBottom: '1rem' }}>
+            <PasswordInput
+              name="password"
+              label="Choose Password"
+              value={values.password}
+              error={errors.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={loading}
+              requiredIndicator
+              placeholder="••••••••••••"
+            />
+          </div>
+
+          <div style={{ marginBottom: '1rem' }}>
+            <PasswordInput
+              name="confirmPassword"
+              label="Confirm Password"
+              value={values.confirmPassword}
+              error={errors.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={loading}
+              requiredIndicator
+              placeholder="••••••••••••"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={loading}
+            style={{ width: '100%', marginTop: '1.5rem', padding: '0.75rem' }}
+          >
+            {loading ? 'Activating Profile...' : 'Activate Profile'}
+          </Button>
+        </form>
+      )}
+
+      <AuthFooter links={[{ label: 'Return to Sign In', to: '/auth/login' }]} />
+    </AuthCard>
+  )
+}

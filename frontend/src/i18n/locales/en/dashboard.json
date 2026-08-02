@@ -1,0 +1,10 @@
+{
+  "title": "Main Dashboard",
+  "subtitle": "Clinic Management & Digital Health Services Gateway",
+  "metrics": {
+    "totalPatients": "Total Patients",
+    "todayAppointments": "Today's Appointments",
+    "activeDoctors": "Active Doctors",
+    "monthlyRevenue": "Monthly Revenue"
+  }
+}

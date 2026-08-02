@@ -1,0 +1,34 @@
+{
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "search": "Search...",
+    "export_pdf": "Export PDF",
+    "export_csv": "Export CSV",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "refresh": "Refresh"
+  },
+  "status": {
+    "active": "Active",
+    "pending": "Pending",
+    "suspended": "Suspended",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "labels": {
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "arabic": "العربية",
+    "english": "English",
+    "systemStatus": "System Status",
+    "noData": "No Data Available",
+    "loading": "Loading..."
+  }
+}

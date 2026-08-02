@@ -1,0 +1,10 @@
+{
+  "title": "لوحة التحكم الرئيسية",
+  "subtitle": "نظام إدارة العيادة والخدمات الطبية الرقمية",
+  "metrics": {
+    "totalPatients": "إجمالي المرضى",
+    "todayAppointments": "مواعيد اليوم",
+    "activeDoctors": "الأطباء المتواجدون",
+    "monthlyRevenue": "الإيرادات الشهرية"
+  }
+}

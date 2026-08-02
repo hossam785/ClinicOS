@@ -1,0 +1,34 @@
+{
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "confirm": "تأكيد",
+    "search": "بحث...",
+    "export_pdf": "تصدير PDF",
+    "export_csv": "تصدير CSV",
+    "back": "رجوع",
+    "next": "التالي",
+    "close": "إغلاق",
+    "refresh": "تحديث"
+  },
+  "status": {
+    "active": "نشط",
+    "pending": "قيد الانتظار",
+    "suspended": "معلق",
+    "completed": "مكتمل",
+    "cancelled": "ملغى",
+    "online": "متصل",
+    "offline": "غير متصل"
+  },
+  "labels": {
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة",
+    "arabic": "العربية",
+    "english": "English",
+    "systemStatus": "حالة النظام",
+    "noData": "لا توجد بيانات متاحة",
+    "loading": "جاري التحميل..."
+  }
+}

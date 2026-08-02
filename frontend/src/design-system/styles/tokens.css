@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Color System - Light Theme (Default) */
+  --color-primary: #1066cc;
+  --color-primary-hover: #0c4fa0;
+  --color-secondary: #64748b;
+  --color-secondary-hover: #475569;
+
+  --color-bg-base: #f8fafc;
+  --color-bg-surface: #ffffff;
+
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
+
+  --color-border: #e2e8f0;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0ea5e9;
+
+  /* Spacing Scale */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+  /* Transition timings */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 250ms ease-in-out;
+
+  /* Elevation (Z-index) */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Color System - Dark Theme */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-secondary: #94a3b8;
+    --color-secondary-hover: #cbd5e1;
+
+    --color-bg-base: #0f172a;
+    --color-bg-surface: #1e293b;
+
+    --color-text-main: #f8fafc;
+    --color-text-muted: #94a3b8;
+
+    --color-border: #334155;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+}

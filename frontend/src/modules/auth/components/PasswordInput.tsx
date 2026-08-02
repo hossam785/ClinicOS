@@ -1,6 +1,5 @@
 import type { InputHTMLAttributes } from 'react'
 import { useState } from 'react'
-import Input from '@/design-system/components/Input'
 import { Eye, EyeOff } from 'lucide-react'
 
 export interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -24,35 +23,43 @@ export default function PasswordInput({
   }
 
   return (
-    <div style={{ position: 'relative' }}>
-      <Input
-        type={showPassword ? 'text' : 'password'}
-        label={label}
-        error={error}
-        helperText={helperText}
-        requiredIndicator={requiredIndicator}
-        {...props}
-      />
-      <button
-        type="button"
-        onClick={toggleVisibility}
-        style={{
-          position: 'absolute',
-          right: '12px',
-          bottom: error ? '28px' : '10px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: 'var(--color-text-muted)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 0,
-        }}
-        aria-label={showPassword ? 'Hide password' : 'Show password'}
-      >
-        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-      </button>
+    <div className="form-field-group">
+      {label && (
+        <label>
+          {label}
+          {requiredIndicator && <span className="required-star">*</span>}
+        </label>
+      )}
+      <div style={{ position: 'relative', width: '100%' }}>
+        <input
+          type={showPassword ? 'text' : 'password'}
+          style={{ paddingRight: '2.5rem' }}
+          {...props}
+        />
+        <button
+          type="button"
+          onClick={toggleVisibility}
+          style={{
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            color: 'var(--color-text-muted)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
+          aria-label={showPassword ? 'Hide password' : 'Show password'}
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      </div>
+      {helperText && <p className="helper-text">{helperText}</p>}
+      {error && <span className="error-message">{error}</span>}
     </div>
   )
 }

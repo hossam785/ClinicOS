@@ -20,6 +20,7 @@ export default function AuthLayout() {
   return (
     <div
       className="auth-layout"
+      dir="ltr"
       style={{
         display: 'flex',
         alignItems: 'center',

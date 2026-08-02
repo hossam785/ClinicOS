@@ -13,7 +13,7 @@ export interface User {
   email: string
   passwordHash: string
   fullName: string
-  role: 'ClinicOwner' | 'ClinicAdmin' | 'Doctor' | 'Nurse' | 'Patient'
+  role: 'PlatformSuperAdmin' | 'ClinicOwner' | 'ClinicAdmin' | 'Doctor' | 'Nurse' | 'Patient'
   status: 'ACTIVE' | 'SUSPENDED' | 'ARCHIVED'
   failedLoginAttempts: number
   lockoutUntil: Date | null

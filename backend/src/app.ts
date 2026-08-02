@@ -22,8 +22,14 @@ import { aiAssistantRouter } from '@/modules/ai-assistant/aiAssistant.routes'
 import syncEngineRoutes from '@/modules/sync-engine/syncEngine.routes'
 import platformControlRoutes from '@/modules/platform-control/platformControl.routes'
 import { localizationMiddleware } from '@/modules/localization/localizationMiddleware'
+import { AuthService } from '@/modules/auth/auth.service'
 
 const app = express()
+
+// Initialize Platform Super Admin Bootstrap
+AuthService.bootstrapSuperAdmin().catch((err) => {
+  console.error('[ClinicOS Backend] Platform Super Admin Bootstrap Error:', err)
+})
 
 // Global Middlewares
 app.use(cors())

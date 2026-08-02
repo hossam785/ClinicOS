@@ -1,6 +1,7 @@
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { env } from '@/config/environment'
 import { AppError } from '@/shared/errors/AppError'
 import { logger } from '@/shared/logging/logger'
 import {
@@ -16,6 +17,54 @@ const JWT_SECRET = process.env.JWT_SECRET || 'clinicos-master-secret-key-101'
 const BCRYPT_SALT_ROUNDS = 12
 
 export class AuthService {
+  public static async bootstrapSuperAdmin(): Promise<User | null> {
+    const adminEmail = env.PLATFORM_SUPER_ADMIN_EMAIL
+    const adminPassword = env.PLATFORM_SUPER_ADMIN_PASSWORD
+
+    if (!adminEmail || !adminPassword) {
+      return null
+    }
+
+    const existingAdmin = await UserRepository.findByEmail(adminEmail)
+    if (existingAdmin) {
+      return existingAdmin
+    }
+
+    const platformTenantId = 'system-platform'
+    let platformTenant = await TenantRepository.findById(platformTenantId)
+    if (!platformTenant) {
+      platformTenant = {
+        id: platformTenantId,
+        name: 'ClinicOS Platform Administration',
+        status: 'ACTIVE',
+        createdAt: new Date(),
+      }
+      await TenantRepository.create(platformTenant)
+    }
+
+    const passwordHash = await bcrypt.hash(adminPassword, BCRYPT_SALT_ROUNDS)
+    const superAdminUser: User = {
+      id: 'usr-platform-super-admin',
+      tenantId: platformTenantId,
+      email: adminEmail.toLowerCase(),
+      passwordHash,
+      fullName: 'Platform Super Admin',
+      role: 'PlatformSuperAdmin',
+      status: 'ACTIVE',
+      failedLoginAttempts: 0,
+      lockoutUntil: null,
+      createdAt: new Date(),
+    }
+
+    await UserRepository.create(superAdminUser)
+    logger.info({
+      message: 'Platform Super Admin account bootstrapped successfully',
+      context: { email: adminEmail, tenantId: platformTenantId },
+    })
+
+    return superAdminUser
+  }
+
   public static async registerClinic(payload: {
     clinicName: string
     ownerEmail: string

@@ -10,64 +10,64 @@ export const PlatformMetricsHeader: React.FC<PlatformMetricsHeaderProps> = ({ st
   if (!stats) return null;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-blue-500/10 rounded-lg text-blue-400">
-          <Building2 className="w-5 h-5" />
+    <div className="platform-metrics-grid mb-6">
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-blue-500/15 text-blue-400">
+          <Building2 size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Total Clinics</p>
-          <p className="text-xl font-bold text-white mt-0.5">{stats.totalClinics.toLocaleString()}</p>
+          <p className="platform-metric-label">Total Clinics</p>
+          <p className="platform-metric-value text-white">{stats.totalClinics.toLocaleString()}</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-emerald-500/10 rounded-lg text-emerald-400">
-          <Building2 className="w-5 h-5" />
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-emerald-500/15 text-emerald-400">
+          <Building2 size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Active Clinics</p>
-          <p className="text-xl font-bold text-emerald-400 mt-0.5">{stats.activeClinics.toLocaleString()}</p>
+          <p className="platform-metric-label">Active Clinics</p>
+          <p className="platform-metric-value text-emerald-400">{stats.activeClinics.toLocaleString()}</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-amber-500/10 rounded-lg text-amber-400">
-          <Cpu className="w-5 h-5" />
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-amber-500/15 text-amber-400">
+          <Cpu size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Active Desktop PCs</p>
-          <p className="text-xl font-bold text-white mt-0.5">{stats.activeDevices.toLocaleString()}</p>
+          <p className="platform-metric-label">Active Desktop PCs</p>
+          <p className="platform-metric-value text-white">{stats.activeDevices.toLocaleString()}</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
-          <Key className="w-5 h-5" />
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-purple-500/15 text-purple-400">
+          <Key size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Licenses Issued</p>
-          <p className="text-xl font-bold text-white mt-0.5">{stats.issuedLicenses.toLocaleString()}</p>
+          <p className="platform-metric-label">Licenses Issued</p>
+          <p className="platform-metric-value text-white">{stats.issuedLicenses.toLocaleString()}</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-teal-500/10 rounded-lg text-teal-400">
-          <Activity className="w-5 h-5" />
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-teal-500/15 text-teal-400">
+          <Activity size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Sync Health Rate</p>
-          <p className="text-xl font-bold text-teal-400 mt-0.5">{stats.syncHealthPercentage}%</p>
+          <p className="platform-metric-label">Sync Health Rate</p>
+          <p className="platform-metric-value text-teal-400">{stats.syncHealthPercentage}%</p>
         </div>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
-        <div className="p-3 bg-emerald-500/10 rounded-lg text-emerald-400">
-          <DollarSign className="w-5 h-5" />
+      <div className="platform-metric-card">
+        <div className="platform-metric-icon bg-emerald-500/15 text-emerald-400">
+          <DollarSign size={22} />
         </div>
         <div>
-          <p className="text-xs text-slate-400 font-medium">Monthly Revenue</p>
-          <p className="text-xl font-bold text-white mt-0.5">${stats.monthlyRevenueUsd.toLocaleString()}</p>
+          <p className="platform-metric-label">Monthly Revenue</p>
+          <p className="platform-metric-value text-white">${stats.monthlyRevenueUsd.toLocaleString()}</p>
         </div>
       </div>
     </div>

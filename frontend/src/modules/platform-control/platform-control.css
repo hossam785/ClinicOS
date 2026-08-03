@@ -1,18 +1,15 @@
-/* Platform Control Panel - Ultra-Premium Dark Enterprise Theme */
+/* Platform Control Panel - Premium Enterprise Theme */
 
 .platform-control-root {
   min-height: 100vh;
-  background-color: #030712 !important;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(17, 24, 39, 0.3) 0px, transparent 50%);
-  color: #f3f4f6 !important;
-  padding: 1.75rem !important;
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+  padding: 2rem !important;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   box-sizing: border-box !important;
 }
 
-/* Force LTR layout for admin panel */
+/* Force LTR direction */
 .platform-control-root,
 .platform-control-root[dir="rtl"],
 .platform-control-root[dir="ltr"] {
@@ -24,96 +21,107 @@
   box-sizing: border-box !important;
 }
 
-/* Glassmorphism Cards */
+/* 6-Column Metrics Grid Layout */
+.platform-metrics-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 1rem !important;
+  width: 100% !important;
+}
+
+@media (max-width: 1280px) {
+  .platform-metrics-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .platform-metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Metric Card Container */
+.platform-metric-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.875rem !important;
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.875rem !important;
+  padding: 1.25rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+.platform-metric-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: #3b82f6 !important;
+}
+
+.platform-metric-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 0.625rem !important;
+  flex-shrink: 0 !important;
+}
+
+.platform-metric-label {
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  color: #94a3b8 !important;
+  margin: 0 !important;
+}
+
+.platform-metric-value {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin: 0.25rem 0 0 0 !important;
+}
+
+/* Glassmorphism Containers & Cards */
 .platform-control-root .bg-slate-900,
 .platform-control-root .bg-slate-950 {
-  background-color: rgba(15, 23, 42, 0.75) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.875rem !important;
 }
 
 .platform-control-root .border-slate-800 {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: #334155 !important;
 }
 
-/* Navigation Tabs Styling Fix */
+/* Tab Navigation Buttons */
 .platform-control-root button {
   font-family: inherit !important;
   cursor: pointer !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-/* Un-selected / Inactive Tab Buttons */
-.platform-control-root .text-slate-400.hover\:bg-slate-900,
 .platform-control-root button:not(.bg-blue-600) {
-  background-color: rgba(15, 23, 42, 0.6) !important;
-  color: #9ca3af !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  border: 1px solid #334155 !important;
 }
 
 .platform-control-root button:not(.bg-blue-600):hover {
-  background-color: rgba(30, 41, 59, 0.8) !important;
+  background-color: #334155 !important;
   color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: #60a5fa !important;
 }
 
-/* Active Selected Tab */
+/* Active Selected Tab Button */
 .platform-control-root .bg-blue-600,
 .platform-control-root button.bg-blue-600 {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(96, 165, 250, 0.4) !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+  border: 1px solid #60a5fa !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
 }
 
-/* Metric Cards Enhancements */
-.platform-control-root .grid-cols-6 > div,
-.platform-control-root .grid > div {
-  border-radius: 0.875rem !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-}
-
-.platform-control-root .grid-cols-6 > div:hover {
-  transform: translateY(-2px) !important;
-  border-color: rgba(59, 130, 246, 0.3) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Text Colors */
-.platform-control-root .text-white { color: #ffffff !important; }
-.platform-control-root .text-slate-100 { color: #f3f4f6 !important; }
-.platform-control-root .text-slate-200 { color: #e5e7eb !important; }
-.platform-control-root .text-slate-300 { color: #d1d5db !important; }
-.platform-control-root .text-slate-400 { color: #9ca3af !important; }
-.platform-control-root .text-slate-500 { color: #6b7280 !important; }
-
-.platform-control-root .text-blue-400 { color: #60a5fa !important; }
-.platform-control-root .text-emerald-400 { color: #34d399 !important; }
-.platform-control-root .text-amber-400 { color: #fbbf24 !important; }
-.platform-control-root .text-rose-400 { color: #f87171 !important; }
-.platform-control-root .text-purple-400 { color: #c084fc !important; }
-.platform-control-root .text-teal-400 { color: #2dd4bf !important; }
-
-/* Input Fields & Select Dropdowns */
-.platform-control-root input,
-.platform-control-root select {
-  background-color: rgba(15, 23, 42, 0.8) !important;
-  color: #f3f4f6 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 0.5rem !important;
-  padding: 0.5rem 0.875rem !important;
-  font-size: 0.8125rem !important;
-  outline: none !important;
-}
-
-.platform-control-root input:focus,
-.platform-control-root select:focus {
-  border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
-}
-
-/* Tables Styling */
+/* High-Contrast Table Formatting */
 .platform-control-root table {
   width: 100% !important;
   border-collapse: separate !important;
@@ -122,48 +130,40 @@
 }
 
 .platform-control-root th {
-  background-color: rgba(3, 7, 18, 0.7) !important;
-  color: #9ca3af !important;
-  font-size: 0.7rem !important;
+  background-color: #0f172a !important;
+  color: #94a3b8 !important;
+  font-size: 0.75rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
-  padding: 0.875rem 1.25rem !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1rem 1.25rem !important;
+  border-bottom: 1px solid #334155 !important;
 }
 
 .platform-control-root td {
   padding: 1rem 1.25rem !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-  color: #e5e7eb !important;
-  font-size: 0.8125rem !important;
+  border-bottom: 1px solid #334155 !important;
+  color: #f8fafc !important;
+  font-size: 0.875rem !important;
+  background-color: #1e293b !important;
 }
 
 .platform-control-root tr:hover td {
-  background-color: rgba(30, 41, 59, 0.4) !important;
+  background-color: #334155 !important;
 }
 
-/* Action Buttons inside Table */
-.platform-control-root td button {
-  padding: 0.35rem 0.75rem !important;
-  border-radius: 0.375rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  margin-right: 0.375rem !important;
-}
-
-/* Scrollbar Customization */
+/* Custom Scrollbars */
 .platform-control-root ::-webkit-scrollbar {
   height: 6px;
   width: 6px;
 }
 .platform-control-root ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: #0f172a;
 }
 .platform-control-root ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: #334155;
   border-radius: 9999px;
 }
 .platform-control-root ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: #475569;
 }

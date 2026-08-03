@@ -29,29 +29,50 @@ export default function ClinicHeader({
               {crumb.href ? (
                 <a
                   href={crumb.href}
-                  style={{ color: 'var(--color-primary)', textDecoration: 'none' }}
+                  style={{
+                    color: 'var(--color-primary)',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                  }}
                 >
                   {crumb.label}
                 </a>
               ) : (
-                <span>{crumb.label}</span>
+                <span style={{ fontWeight: 500 }}>{crumb.label}</span>
               )}
-              {idx < breadcrumbs.length - 1 && <span style={{ marginLeft: '0.5rem' }}>/</span>}
+              {idx < breadcrumbs.length - 1 && <span style={{ marginLeft: '0.5rem', opacity: 0.5 }}>/</span>}
             </span>
           ))}
         </nav>
       )}
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem',
+        }}
+      >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <h1 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-text-main)', margin: 0 }}>
+            <h1
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.75rem',
+                fontWeight: 700,
+                color: 'var(--color-text-main)',
+                letterSpacing: '-0.02em',
+                margin: 0,
+              }}
+            >
               {title}
             </h1>
             {status && <ClinicStatusBadge status={status} />}
           </div>
           {subtitle && (
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', marginTop: '0.35rem' }}>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', marginTop: '0.35rem', lineHeight: 1.4 }}>
               {subtitle}
             </p>
           )}

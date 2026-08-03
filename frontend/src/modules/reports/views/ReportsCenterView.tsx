@@ -49,7 +49,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Financial Profit and Loss Statement',
       description: 'Comprehensive financial report summarizing gross revenue (completed visits), paid operating expenses, net profit, and profit margin %.',
       targetAudience: 'Clinic Owner, Accountant',
-      icon: <DollarSign className="h-6 w-6 text-emerald-600" />,
+      icon: <DollarSign className="h-6 w-6 text-emerald-400" />,
     },
     {
       id: 'DOCTOR_PERFORMANCE',
@@ -57,7 +57,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Doctor Productivity & Performance Report',
       description: 'Evaluates completed consultations, scheduled volume, completion rate, revenue generated, and patient load per doctor.',
       targetAudience: 'Clinic Manager, Doctors',
-      icon: <UserCheck className="h-6 w-6 text-indigo-600" />,
+      icon: <UserCheck className="h-6 w-6 text-indigo-400" />,
     },
     {
       id: 'PATIENT_DEMOGRAPHICS',
@@ -65,7 +65,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Patient Acquisition & Demographics',
       description: 'Tracks new patient registrations, returning patient visit recurrence, age group distribution cohorts, and gender ratios.',
       targetAudience: 'Clinic Manager, Receptionist',
-      icon: <Users className="h-6 w-6 text-blue-600" />,
+      icon: <Users className="h-6 w-6 text-blue-400" />,
     },
     {
       id: 'APPOINTMENT_ANALYTICS',
@@ -73,7 +73,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Appointment Volume & Queue Efficiency',
       description: 'Analyzes booking density, peak clinic hours, cancellation/no-show rates, average waiting time, and consultation duration.',
       targetAudience: 'Receptionist, Clinic Manager',
-      icon: <Calendar className="h-6 w-6 text-amber-600" />,
+      icon: <Calendar className="h-6 w-6 text-amber-400" />,
     },
     {
       id: 'BUSINESS_OVERVIEW',
@@ -81,7 +81,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Executive Business Overview',
       description: 'High-level business overview summarizing active revenue trends, facility capacity utilization, and key performance indicators.',
       targetAudience: 'Clinic Owner, Executive Board',
-      icon: <PieChart className="h-6 w-6 text-purple-600" />,
+      icon: <PieChart className="h-6 w-6 text-purple-400" />,
     },
     {
       id: 'MEDICAL_ANONYMIZED',
@@ -89,7 +89,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Anonymized Clinical Diagnoses & Procedures',
       description: 'Aggregates ICD-10 diagnosis prevalence, common procedures, and prescription frequency. Zero Patient Identifiable Information.',
       targetAudience: 'Chief Medical Officer, Doctors',
-      icon: <Activity className="h-6 w-6 text-rose-600" />,
+      icon: <Activity className="h-6 w-6 text-rose-400" />,
     },
     {
       id: 'OPERATIONAL_SECURITY',
@@ -97,7 +97,7 @@ export const ReportsCenterView: React.FC = () => {
       title: 'Operational Reception & Security Audit',
       description: 'Monitors check-in processing speed, staff login security activity, database backup status, and synchronization history.',
       targetAudience: 'System Administrator, Manager',
-      icon: <ShieldCheck className="h-6 w-6 text-slate-700" />,
+      icon: <ShieldCheck className="h-6 w-6 text-teal-400" />,
     },
   ]
 
@@ -111,30 +111,55 @@ export const ReportsCenterView: React.FC = () => {
   })
 
   return (
-    <div className="space-y-6 p-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div dir="ltr" style={{ direction: 'ltr', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      {/* Header Container */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          padding: '1.5rem',
+          borderRadius: 'var(--radius-xl)',
+          backgroundColor: 'var(--color-bg-surface)',
+          border: '1px solid var(--color-border)',
+        }}
+      >
         <div>
-          <h1 className="text-xl font-bold text-slate-900">Centralized Reports Center Catalog</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text-main)', margin: 0 }}>
+            Centralized Reports Center Catalog
+          </h1>
+          <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', margin: '0.25rem 0 0 0' }}>
             Select a specialized report category to inspect metrics, generate analytical statements, or export documents.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => navigate('/dashboard/reports/history')}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
-          >
-            <History className="h-4 w-4 text-slate-500" />
-            Snapshot History
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => navigate('/dashboard/reports/history')}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1rem',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--color-border)',
+            backgroundColor: 'var(--color-bg-base)',
+            color: 'var(--color-text-main)',
+            fontSize: '0.8125rem',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          <History size={16} />
+          <span>Snapshot History</span>
+        </button>
       </div>
 
       {/* Filter Tabs & Search Bar */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
           {categories.map((tab) => {
             const isActive = activeTab === tab.id
             return (
@@ -142,11 +167,17 @@ export const ReportsCenterView: React.FC = () => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
-                  isActive
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-slate-900'
-                }`}
+                style={{
+                  padding: '0.5rem 0.875rem',
+                  borderRadius: 'var(--radius-md)',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  border: isActive ? '1px solid var(--color-primary)' : '1px solid var(--color-border)',
+                  backgroundColor: isActive ? 'var(--color-primary)' : 'var(--color-bg-surface)',
+                  color: isActive ? '#ffffff' : 'var(--color-text-muted)',
+                  transition: 'all var(--transition-fast)',
+                }}
               >
                 {tab.label}
               </button>
@@ -154,53 +185,106 @@ export const ReportsCenterView: React.FC = () => {
           })}
         </div>
 
-        <div className="relative w-full lg:w-72">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+        <div style={{ position: 'relative', width: '280px' }}>
+          <Search size={16} style={{ position: 'absolute', left: '10px', top: '10px', color: 'var(--color-text-muted)' }} />
           <input
             type="text"
             placeholder="Search report catalog..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 bg-white pl-9 pr-4 py-2 text-xs text-slate-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            style={{
+              width: '100%',
+              padding: '0.5rem 0.75rem 0.5rem 2.25rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--color-border)',
+              backgroundColor: 'var(--color-bg-surface)',
+              color: 'var(--color-text-main)',
+              fontSize: '0.8125rem',
+              outline: 'none',
+              boxSizing: 'border-box',
+            }}
           />
         </div>
       </div>
 
       {/* Catalog Cards Grid */}
       {filteredCatalog.length === 0 ? (
-        <div className="rounded-xl border border-slate-200 bg-white p-12 text-center shadow-sm">
-          <FileText className="mx-auto h-10 w-10 text-slate-400 mb-3" />
-          <h3 className="text-base font-bold text-slate-800">No Reports Found</h3>
-          <p className="mt-1 text-xs text-slate-500">No report catalog items match your search query or selected category filter.</p>
+        <div
+          style={{
+            padding: '3rem',
+            textAlign: 'center',
+            borderRadius: 'var(--radius-xl)',
+            backgroundColor: 'var(--color-bg-surface)',
+            border: '1px solid var(--color-border)',
+            color: 'var(--color-text-muted)',
+          }}
+        >
+          <FileText size={40} style={{ marginBottom: '0.75rem', opacity: 0.5 }} />
+          <h3 style={{ margin: '0 0 0.25rem 0', color: 'var(--color-text-main)' }}>No Reports Found</h3>
+          <p style={{ margin: 0, fontSize: '0.875rem' }}>No report catalog items match your search query or selected category filter.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
           {filteredCatalog.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-slate-300"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '1.5rem',
+                borderRadius: 'var(--radius-xl)',
+                backgroundColor: 'var(--color-bg-surface)',
+                border: '1px solid var(--color-border)',
+                boxShadow: 'var(--shadow-sm)',
+                transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
+                boxSizing: 'border-box',
+              }}
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="rounded-xl bg-slate-50 p-3 border border-slate-100">{item.icon}</div>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-600 uppercase tracking-wider">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                  <div style={{ padding: '0.625rem', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-bg-base)', border: '1px solid var(--color-border)' }}>
+                    {item.icon}
+                  </div>
+                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.05em', color: 'var(--color-primary)', backgroundColor: 'rgba(59, 130, 246, 0.15)', padding: '0.25rem 0.625rem', borderRadius: 'var(--radius-full)' }}>
                     {item.category}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4">{item.description}</p>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-text-main)', marginBottom: '0.5rem' }}>
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
+                  {item.description}
+                </p>
               </div>
 
-              <div className="border-t border-slate-100 pt-4 flex items-center justify-between">
-                <span className="text-[10px] font-medium text-slate-400">Target: {item.targetAudience}</span>
+              <div style={{ paddingTop: '1rem', borderTop: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>Target: {item.targetAudience}</span>
                 <button
                   type="button"
                   onClick={() => navigate(`/dashboard/reports/view/${item.id}`)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.375rem',
+                    fontSize: '0.8125rem',
+                    fontWeight: 700,
+                    color: 'var(--color-primary)',
+                    cursor: 'pointer',
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                  }}
                 >
-                  View Report
-                  <ArrowRight className="h-4 w-4" />
+                  <span>View Report</span>
+                  <ArrowRight size={14} />
                 </button>
               </div>
             </div>

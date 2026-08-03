@@ -34,7 +34,11 @@ export default function SyncCenterWorkspaceView() {
   } = useSyncEngine()
 
   return (
-    <div className="p-6 bg-slate-100 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans space-y-6">
+    <div
+      dir="ltr"
+      style={{ direction: 'ltr', textAlign: 'left' }}
+      className="p-6 bg-slate-100 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans space-y-6"
+    >
       {/* Header Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xs">
         <div className="flex items-center gap-3">

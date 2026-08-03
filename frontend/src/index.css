@@ -163,6 +163,58 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2px;
 }
 
+/* Standardized Enterprise Alert Component Styles */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg, 12px);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  text-align: start;
+}
+
+.alert[data-variant="danger"] {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.alert[data-variant="warning"] {
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
+}
+
+.alert[data-variant="success"] {
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #6ee7b7;
+}
+
+.alert[data-variant="info"] {
+  background-color: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+
+.alert-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.alert-content {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: inherit;
+  opacity: 0.95;
+}
+
 /* Standardized Button Reset */
 button {
   font-family: inherit;

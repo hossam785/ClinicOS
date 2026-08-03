@@ -14,25 +14,69 @@ import {
   Activity,
 } from 'lucide-react'
 import { useAuth } from '@/modules/auth/hooks/useAuth'
+import { useLanguage } from '@/i18n'
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
   const { user } = useAuth()
+  const { isRTL, language } = useLanguage()
 
   const isSuperAdmin = user?.role === 'PlatformSuperAdmin'
 
   const navItems = [
-    { label: 'Patients', to: '/dashboard/patients', icon: Users },
-    { label: 'Appointments', to: '/dashboard/appointments', icon: Calendar },
-    { label: 'Daily Queue', to: '/dashboard/queue', icon: Clock },
-    { label: 'Medical Records', to: '/dashboard/records', icon: FileText },
-    { label: 'AI Assistant', to: '/dashboard/ai-assistant', icon: Bot },
-    { label: 'Sync Engine', to: '/dashboard/sync-engine', icon: RefreshCw },
-    { label: 'Reports', to: '/dashboard/reports', icon: BarChart3 },
+    {
+      label: language === 'ar' ? 'المرضى' : 'Patients',
+      to: '/dashboard/patients',
+      icon: Users,
+    },
+    {
+      label: language === 'ar' ? 'المواعيد' : 'Appointments',
+      to: '/dashboard/appointments',
+      icon: Calendar,
+    },
+    {
+      label: language === 'ar' ? 'قائمة الانتظار' : 'Daily Queue',
+      to: '/dashboard/queue',
+      icon: Clock,
+    },
+    {
+      label: language === 'ar' ? 'السجلات الطبية' : 'Medical Records',
+      to: '/dashboard/records',
+      icon: FileText,
+    },
+    {
+      label: language === 'ar' ? 'المساعد الطبي AI' : 'AI Assistant',
+      to: '/dashboard/ai-assistant',
+      icon: Bot,
+    },
+    {
+      label: language === 'ar' ? 'محرك المزامنة' : 'Sync Engine',
+      to: '/dashboard/sync-engine',
+      icon: RefreshCw,
+    },
+    {
+      label: language === 'ar' ? 'التقارير والإحصائيات' : 'Reports & Analytics',
+      to: '/dashboard/reports',
+      icon: BarChart3,
+    },
     ...(isSuperAdmin
-      ? [{ label: 'Platform Admin', to: '/platform-control', icon: ShieldCheck }]
+      ? [
+          {
+            label: language === 'ar' ? 'لوحة تحكم المنصة' : 'Platform Admin',
+            to: '/platform-control',
+            icon: ShieldCheck,
+          },
+        ]
       : []),
   ]
+
+  const CollapseIcon = isRTL
+    ? collapsed
+      ? ChevronLeft
+      : ChevronRight
+    : collapsed
+    ? ChevronRight
+    : ChevronLeft
 
   return (
     <aside
@@ -41,7 +85,8 @@ export default function Sidebar() {
         width: collapsed ? '72px' : '260px',
         minWidth: collapsed ? '72px' : '260px',
         backgroundColor: 'var(--color-bg-surface)',
-        borderRight: '1px solid var(--color-border)',
+        borderRight: isRTL ? 'none' : '1px solid var(--color-border)',
+        borderLeft: isRTL ? '1px solid var(--color-border)' : 'none',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
@@ -68,15 +113,15 @@ export default function Sidebar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: 'var(--radius-md)',
               backgroundColor: 'rgba(59, 130, 246, 0.12)',
               color: 'var(--color-primary)',
               flexShrink: 0,
             }}
           >
-            <Activity size={20} />
+            <Activity size={22} />
           </div>
           {!collapsed && (
             <span
@@ -86,6 +131,7 @@ export default function Sidebar() {
                 fontWeight: 700,
                 color: 'var(--color-text-main)',
                 whiteSpace: 'nowrap',
+                letterSpacing: '-0.015em',
               }}
             >
               ClinicOS
@@ -110,7 +156,7 @@ export default function Sidebar() {
           }}
           aria-label={collapsed ? 'Expand sidebar navigation' : 'Collapse sidebar navigation'}
         >
-          {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          <CollapseIcon size={16} />
         </button>
       </div>
 

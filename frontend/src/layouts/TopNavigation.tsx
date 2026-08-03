@@ -1,14 +1,21 @@
-import { Bell } from 'lucide-react'
+import { Bell, ShieldCheck } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/modules/auth/hooks/useAuth'
-import { LanguageSwitcher } from '@/i18n'
+import { LanguageSwitcher, useLanguage } from '@/i18n'
 import Avatar from '@/design-system/components/Avatar'
 import Badge from '@/design-system/components/Badge'
 
 export default function TopNavigation() {
   const { user } = useAuth()
+  const { language } = useLanguage()
+  const navigate = useNavigate()
 
   const userInitial = user?.email ? user.email.charAt(0).toUpperCase() : 'U'
   const userRole = user?.role || 'User'
+  const isSuperAdmin = userRole === 'PlatformSuperAdmin'
+
+  const workspaceTitle = language === 'ar' ? 'مساحة عمل ClinicOS' : 'ClinicOS Workspace'
+  const platformBtnLabel = language === 'ar' ? 'لوحة التحكم في المنصة' : 'Platform Control Panel'
 
   return (
     <header
@@ -29,8 +36,8 @@ export default function TopNavigation() {
         boxSizing: 'border-box',
       }}
     >
-      {/* Workspace Brand / Breadcrumb Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      {/* Workspace Brand / Role Header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
         <h1
           style={{
             fontFamily: 'var(--font-heading)',
@@ -41,13 +48,36 @@ export default function TopNavigation() {
             letterSpacing: '-0.015em',
           }}
         >
-          ClinicOS Workspace
+          {workspaceTitle}
         </h1>
         <Badge variant="info">{userRole}</Badge>
+
+        {isSuperAdmin && (
+          <button
+            type="button"
+            onClick={() => navigate('/platform-control')}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.375rem',
+              padding: '0.375rem 0.75rem',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: 'rgba(37, 99, 235, 0.15)',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
+              color: 'var(--color-primary)',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            <ShieldCheck size={14} />
+            <span>{platformBtnLabel}</span>
+          </button>
+        )}
       </div>
 
       {/* Action Controls & Profile Menu */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         {/* Notifications Icon Button */}
         <button
           type="button"
@@ -64,7 +94,7 @@ export default function TopNavigation() {
             cursor: 'pointer',
             position: 'relative',
           }}
-          aria-label="View notifications"
+          aria-label={language === 'ar' ? 'عرض الإشعارات' : 'View notifications'}
         >
           <Bell size={18} />
           <span

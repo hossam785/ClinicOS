@@ -13,47 +13,59 @@
 
   --color-bg-base: #f8fafc;
   --color-bg-surface: #ffffff;
+  --color-bg-glass: rgba(255, 255, 255, 0.85);
 
   --color-text-main: #0f172a;
   --color-text-muted: #64748b;
 
   --color-border: #e2e8f0;
+  --color-border-glass: rgba(0, 0, 0, 0.08);
 
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
   --color-info: #0ea5e9;
 
-  /* Spacing Scale */
+  /* Spacing Scale (4px/8px incremental scale) */
+  --spacing-3xs: 2px;
   --spacing-xxs: 4px;
   --spacing-xs: 8px;
   --spacing-sm: 12px;
   --spacing-md: 16px;
+  --spacing-md-20: 20px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   --spacing-xxl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+  --spacing-5xl: 128px;
 
-  /* Border Radius */
+  /* Border Radius Tokens */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
 
-  /* Shadows */
+  /* Shadows & Elevation */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 
-  /* Transition timings */
-  --transition-fast: 150ms ease-out;
-  --transition-normal: 250ms ease-in-out;
+  /* Transition Timings & Easing */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Elevation (Z-index) */
+  /* Elevation (Z-index Matrix) */
   --z-dropdown: 1000;
   --z-sticky: 1020;
   --z-fixed: 1030;
   --z-modal: 1040;
   --z-popover: 1050;
   --z-tooltip: 1060;
+
+  /* Accessibility Focus Glow */
+  --color-focus-ring: rgba(59, 130, 246, 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -66,14 +78,18 @@
 
     --color-bg-base: #0f172a;
     --color-bg-surface: #1e293b;
+    --color-bg-glass: rgba(15, 23, 42, 0.8);
 
     --color-text-main: #f8fafc;
     --color-text-muted: #94a3b8;
 
     --color-border: #334155;
+    --color-border-glass: rgba(255, 255, 255, 0.08);
 
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+
+    --color-focus-ring: rgba(96, 165, 250, 0.4);
   }
 }

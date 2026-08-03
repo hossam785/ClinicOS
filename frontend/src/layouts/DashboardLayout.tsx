@@ -5,7 +5,7 @@ import Sidebar from './Sidebar'
 import TopNavigation from './TopNavigation'
 
 export default function DashboardLayout() {
-  const { isAuthenticated, isInitialized } = useAuth()
+  const { user, isAuthenticated, isInitialized } = useAuth()
 
   if (!isInitialized) {
     return (
@@ -25,6 +25,10 @@ export default function DashboardLayout() {
 
   if (!isAuthenticated) {
     return <Navigate to="/auth/login" replace />
+  }
+
+  if (user?.role === 'PlatformSuperAdmin' || user?.email === 'clinicos@gmail.com') {
+    return <Navigate to="/platform-control" replace />
   }
 
   return (

@@ -82,6 +82,27 @@
   margin: 0.25rem 0 0 0 !important;
 }
 
+/* Sync Telemetry Grid Layouts */
+.platform-sync-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+}
+
+@media (max-width: 900px) {
+  .platform-sync-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.platform-sync-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+}
+
 /* Glassmorphism Containers & Cards */
 .platform-control-root .bg-slate-900,
 .platform-control-root .bg-slate-950 {

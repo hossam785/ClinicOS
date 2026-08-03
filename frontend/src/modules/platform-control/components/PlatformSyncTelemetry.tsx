@@ -17,16 +17,16 @@ export const PlatformSyncTelemetry: React.FC<PlatformSyncTelemetryProps> = ({ sy
         </div>
         <button
           onClick={() => onAction('REFRESH_SYNC', 'GLOBAL')}
-          className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+          className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           Refresh Gateway Telemetry
         </button>
       </div>
 
-      <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="platform-sync-grid p-4">
         {syncOverview.map((item) => (
-          <div key={item.tenantId} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+          <div key={item.tenantId} className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-white text-base">{item.clinicName}</h3>
@@ -38,24 +38,26 @@ export const PlatformSyncTelemetry: React.FC<PlatformSyncTelemetryProps> = ({ sy
               </span>
             </div>
 
-            <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-              <div className="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
-                <p className="text-slate-400">Online PCs</p>
-                <p className="font-bold text-white text-base mt-0.5">{item.activeDevices}</p>
+            <div className="platform-sync-stats-grid mt-4">
+              <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <p className="text-xs text-slate-400 font-medium">Online PCs</p>
+                <p className="font-bold text-white text-lg mt-0.5">{item.activeDevices}</p>
               </div>
-              <div className="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
-                <p className="text-slate-400">Queue Items</p>
-                <p className="font-bold text-teal-400 text-base mt-0.5">{item.pendingQueueItems}</p>
+              <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <p className="text-xs text-slate-400 font-medium">Queue Items</p>
+                <p className="font-bold text-teal-400 text-lg mt-0.5">{item.pendingQueueItems}</p>
               </div>
-              <div className="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
-                <p className="text-slate-400">Conflicts</p>
-                <p className="font-bold text-amber-400 text-base mt-0.5">{item.unresolvedConflicts}</p>
+              <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <p className="text-xs text-slate-400 font-medium">Conflicts</p>
+                <p className="font-bold text-amber-400 text-lg mt-0.5">{item.unresolvedConflicts}</p>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span>Last Successful Gateway Sync:</span>
-              <span className="font-mono text-slate-200">{new Date(item.lastSuccessfulSync).toLocaleTimeString()}</span>
+            <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400" dir="ltr">
+              <span>Last Gateway Sync:</span>
+              <span className="font-mono text-slate-200">
+                {new Date(item.lastSuccessfulSync).toLocaleTimeString('en-US', { hour12: true })}
+              </span>
             </div>
           </div>
         ))}

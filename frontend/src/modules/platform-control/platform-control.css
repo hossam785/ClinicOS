@@ -119,12 +119,22 @@
 .platform-control-root button {
   font-family: inherit !important;
   cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
 }
 
 .platform-control-root button:not(.bg-blue-600) {
   background-color: #1e293b !important;
   color: #94a3b8 !important;
   border: 1px solid #334155 !important;
+  padding: 0.625rem 1rem !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
 }
 
 .platform-control-root button:not(.bg-blue-600):hover {
@@ -140,6 +150,10 @@
   color: #ffffff !important;
   border: 1px solid #60a5fa !important;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+  padding: 0.625rem 1rem !important;
+  border-radius: 0.75rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
 }
 
 /* High-Contrast Table Formatting */

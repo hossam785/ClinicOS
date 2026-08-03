@@ -2,6 +2,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 import { useAuth } from '@/modules/auth/hooks/useAuth'
 import Loader from '@/design-system/components/Loader'
 import { LanguageSwitcher } from '@/i18n'
+import Sidebar from './Sidebar'
 
 export default function DashboardLayout() {
   const { isAuthenticated, isInitialized } = useAuth()
@@ -37,6 +38,7 @@ export default function DashboardLayout() {
         overflowX: 'hidden',
       }}
     >
+      <Sidebar />
       <div
         style={{
           display: 'flex',

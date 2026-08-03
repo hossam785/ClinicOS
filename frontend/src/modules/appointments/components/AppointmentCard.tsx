@@ -11,7 +11,20 @@ interface AppointmentCardProps {
 
 export default function AppointmentCard({ title, subtitle, children, actions, style }: AppointmentCardProps) {
   return (
-    <Card style={{ marginBottom: '1.5rem', ...style }}>
+    <Card
+      elevation="low"
+      style={{
+        padding: '1.5rem',
+        backgroundColor: 'var(--color-bg-surface)',
+        borderRadius: 'var(--radius-xl)',
+        border: '1px solid var(--color-border)',
+        boxShadow: 'var(--shadow-sm)',
+        boxSizing: 'border-box',
+        marginBottom: '1.5rem',
+        transition: 'box-shadow var(--transition-fast), border-color var(--transition-fast)',
+        ...style,
+      }}
+    >
       {(title || actions) && (
         <div
           style={{
@@ -25,11 +38,20 @@ export default function AppointmentCard({ title, subtitle, children, actions, st
         >
           {title && (
             <div>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-text-main)' }}>
+              <h3
+                style={{
+                  margin: 0,
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.125rem',
+                  fontWeight: 700,
+                  color: 'var(--color-text-main)',
+                  letterSpacing: '-0.015em',
+                }}
+              >
                 {title}
               </h3>
               {subtitle && (
-                <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
+                <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.875rem', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>
                   {subtitle}
                 </p>
               )}

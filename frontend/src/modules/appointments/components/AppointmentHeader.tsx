@@ -26,7 +26,7 @@ export default function AppointmentHeader({
     <div style={{ marginBottom: '1.5rem' }}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <nav
-          aria-label="Breadcrumb"
+          aria-label="Breadcrumb navigation"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -38,16 +38,16 @@ export default function AppointmentHeader({
         >
           {breadcrumbs.map((item, index) => (
             <React.Fragment key={index}>
-              {index > 0 && <span>/</span>}
+              {index > 0 && <span style={{ opacity: 0.5 }}>/</span>}
               {item.href ? (
                 <a
                   href={item.href}
-                  style={{ color: 'var(--color-primary)', textDecoration: 'none' }}
+                  style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 500 }}
                 >
                   {item.label}
                 </a>
               ) : (
-                <span style={{ color: 'var(--color-text-main)', fontWeight: 500 }}>{item.label}</span>
+                <span style={{ color: 'var(--color-text-main)', fontWeight: 600 }}>{item.label}</span>
               )}
             </React.Fragment>
           ))}
@@ -65,13 +65,22 @@ export default function AppointmentHeader({
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <h1 style={{ margin: 0, fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-text-main)' }}>
+            <h1
+              style={{
+                margin: 0,
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.75rem',
+                fontWeight: 700,
+                color: 'var(--color-text-main)',
+                letterSpacing: '-0.02em',
+              }}
+            >
               {title}
             </h1>
             {status && <AppointmentStatusBadge status={status} />}
           </div>
           {subtitle && (
-            <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.95rem', color: 'var(--color-text-muted)' }}>
+            <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.95rem', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>
               {subtitle}
             </p>
           )}

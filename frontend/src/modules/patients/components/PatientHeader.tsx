@@ -61,7 +61,16 @@ export default function PatientHeader({ title, subtitle, status, breadcrumbs, ac
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <h1 style={{ margin: 0, fontSize: '1.75rem', fontWeight: 700, color: 'var(--color-text-main)' }}>
+          <h1
+            style={{
+              margin: 0,
+              fontFamily: 'var(--font-heading)',
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--color-text-main)',
+              letterSpacing: '-0.02em',
+            }}
+          >
             {title}
           </h1>
           {status && <PatientStatusBadge status={status} />}
@@ -70,7 +79,7 @@ export default function PatientHeader({ title, subtitle, status, breadcrumbs, ac
       </div>
 
       {subtitle && (
-        <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+        <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.9rem', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>
           {subtitle}
         </p>
       )}

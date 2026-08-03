@@ -13,11 +13,12 @@ export default function PatientCard({ title, subtitle, action, children, style }
     <div
       style={{
         backgroundColor: 'var(--color-bg-surface)',
-        borderRadius: 'var(--radius-lg)',
+        borderRadius: 'var(--radius-xl)',
         border: '1px solid var(--color-border)',
-        padding: '1.25rem',
+        padding: '1.5rem',
         marginBottom: '1.25rem',
         boxShadow: 'var(--shadow-sm)',
+        transition: 'box-shadow var(--transition-fast), border-color var(--transition-fast)',
         ...style,
       }}
     >
@@ -33,7 +34,16 @@ export default function PatientCard({ title, subtitle, action, children, style }
           }}
         >
           {title && (
-            <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-text-main)' }}>
+            <h3
+              style={{
+                margin: 0,
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.125rem',
+                fontWeight: 700,
+                color: 'var(--color-text-main)',
+                letterSpacing: '-0.015em',
+              }}
+            >
               {title}
             </h3>
           )}
@@ -44,10 +54,11 @@ export default function PatientCard({ title, subtitle, action, children, style }
         <p
           style={{
             margin: '0 0 1rem 0',
-            fontSize: '0.85rem',
+            fontSize: '0.875rem',
             color: 'var(--color-text-muted)',
             paddingBottom: '0.75rem',
             borderBottom: '1px solid var(--color-border)',
+            lineHeight: 1.4,
           }}
         >
           {subtitle}

@@ -49,9 +49,22 @@ export default function AIAssistantWorkspaceView() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh border-box)] max-h-screen bg-slate-100 dark:bg-slate-950 overflow-hidden font-sans">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: 'calc(100vh - 90px)',
+        maxHeight: 'calc(100vh - 90px)',
+        backgroundColor: 'var(--color-bg-base)',
+        color: 'var(--color-text-main)',
+        borderRadius: 'var(--radius-xl, 16px)',
+        border: '1px solid var(--color-border)',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+      }}
+    >
       {/* Top AI Engine Health Bar */}
-      <div className="p-3 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div style={{ padding: '0.75rem 1rem', backgroundColor: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <AIStatusBar status={serverStatus} />
       </div>
 
@@ -59,9 +72,9 @@ export default function AIAssistantWorkspaceView() {
       <AISafetyDisclaimerBanner />
 
       {/* Main 3-Column AI Assistant Workspace */}
-      <div className="flex-1 flex overflow-hidden">
+      <div style={{ flex: 1, display: 'flex', minHeight: 0, overflow: 'hidden' }}>
         {/* Left Column: Local Sessions History Sidebar */}
-        <div className="w-64 flex-shrink-0 hidden md:block">
+        <div style={{ width: '260px', flexShrink: 0, borderRight: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg-surface)', display: 'flex', flexDirection: 'column' }}>
           <AISessionHistorySidebar
             sessions={sessions}
             activeSessionId={activeSessionId}
@@ -72,19 +85,21 @@ export default function AIAssistantWorkspaceView() {
         </div>
 
         {/* Center Column: Conversation Feed & Input Area */}
-        <div className="flex-1 flex flex-col min-w-0 bg-slate-50 dark:bg-slate-900/40">
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, backgroundColor: 'var(--color-bg-base)' }}>
           {/* Main Feed Stream */}
-          <AIConversationFeed
-            messages={messages}
-            isLoading={isLoading}
-            onSourceClick={handleSourceClick}
-            onActionClick={handleActionClick}
-          />
+          <div style={{ flex: 1, overflowY: 'auto', padding: '1rem' }}>
+            <AIConversationFeed
+              messages={messages}
+              isLoading={isLoading}
+              onSourceClick={handleSourceClick}
+              onActionClick={handleActionClick}
+            />
+          </div>
 
           {/* Quick Commands Grid (Visible if short conversation) */}
           {messages.length <= 2 && (
-            <div className="p-4 border-t border-slate-200 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30">
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+            <div style={{ padding: '0.75rem 1rem', borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg-surface)' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
                 Quick Command Shortcuts
               </div>
               <AIQuickCommandsGrid commands={quickCommands} onSelectCommand={handleSelectQuickCommand} />
@@ -96,7 +111,7 @@ export default function AIAssistantWorkspaceView() {
         </div>
 
         {/* Right Column: Context & Metadata Panel */}
-        <div className="w-72 flex-shrink-0 hidden lg:block p-4 bg-slate-50 dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 overflow-y-auto">
+        <div style={{ width: '280px', flexShrink: 0, borderLeft: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg-surface)', padding: '1rem', overflowY: 'auto' }}>
           <AIContextPanel context={contextState} />
         </div>
       </div>

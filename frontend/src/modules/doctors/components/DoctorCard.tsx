@@ -16,10 +16,12 @@ export default function DoctorCard({ title, subtitle, action, children, style }:
       style={{
         padding: '1.5rem',
         backgroundColor: 'var(--color-bg-surface)',
-        borderRadius: 'var(--radius-lg)',
+        borderRadius: 'var(--radius-xl)',
         border: '1px solid var(--color-border)',
+        boxShadow: 'var(--shadow-sm)',
         boxSizing: 'border-box',
         marginBottom: '1.5rem',
+        transition: 'box-shadow var(--transition-fast), border-color var(--transition-fast)',
         ...style,
       }}
     >
@@ -30,18 +32,34 @@ export default function DoctorCard({ title, subtitle, action, children, style }:
             alignItems: 'center',
             justifyContent: 'space-between',
             marginBottom: '1.25rem',
-            paddingBottom: title ? '0.75rem' : 0,
+            paddingBottom: title ? '0.875rem' : 0,
             borderBottom: title ? '1px solid var(--color-border)' : 'none',
           }}
         >
           <div>
             {title && (
-              <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'var(--color-text-main)', margin: 0 }}>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.125rem',
+                  fontWeight: 700,
+                  color: 'var(--color-text-main)',
+                  margin: 0,
+                  letterSpacing: '-0.015em',
+                }}
+              >
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', margin: '0.25rem 0 0 0' }}>
+              <p
+                style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--color-text-muted)',
+                  margin: '0.25rem 0 0 0',
+                  lineHeight: 1.4,
+                }}
+              >
                 {subtitle}
               </p>
             )}
